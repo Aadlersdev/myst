@@ -325,6 +325,35 @@ function submitForm(event) {
     })
     .catch(error => console.error('Error:', error));
 }
+
+        function submitContactForm(event) {
+    event.preventDefault();
+
+    // Get the first visit timestamp from the cookie
+    let firstVisitTimestamp = getCookie("firstVisitTimestamp");
+
+    let formData = {
+        firstname: document.getElementById("contact-firstname").value,
+        lastname: document.getElementById("contact-lastname").value,
+        email: document.getElementById("contact-email").value,
+        phonenumber: document.getElementById("contact-phone").value,
+        intrested: document.getElementById("contact-interested").value,
+        websitevisted: firstVisitTimestamp // Use the timestamp from the cookie
+    };
+
+    fetch('https://myst.karankhosla99.workers.dev/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert("Form submitted successfully!");
+        setCookie("formSubmitted", "true", 7); // Mark form as submitted
+        document.getElementById("popup").style.display = "none";
+    })
+    .catch(error => console.error('Error:', error));
+}
     </script>
 </head>
 <body>
@@ -420,7 +449,7 @@ function submitForm(event) {
     </section>
     <section id="contact">
         <h2>Contact Us</h2>
-        <form onsubmit="submitForm(event)">
+        <form onsubmit="submitContactForm">
             <label for="contact-firstname">First Name:</label>
             <input type="text" id="contact-firstname" required>
             
