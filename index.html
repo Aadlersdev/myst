@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Myst Unisex Salon | Nails | Aesthetics</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Update CSS file here -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let preloader = document.getElementById("preloader");
+            setTimeout(() => {
+                preloader.style.opacity = "0";
+                setTimeout(() => { preloader.style.display = "none"; }, 500);
+            }, 3000);
+        });
+    </script>
+</head>
+<body>
+    <div id="preloader" style="position:fixed; top:0; left:0; width:100%; height:100%; background:black; display:flex; justify-content:center; align-items:center; z-index:1000;">
+        <video autoplay muted playsinline style="width:100%; height:auto; max-width:800px;">
+            <source src="Snapinst.app_video_AQPLNSaCrq-8zy7fG0pr_Ftp3cxFC8ImnXyO_0V29szi4RRYANfkxyGjxb9IAM-pFfen4dGQ3bvEnJLxYO3MQ78dUIw3WLZ9wyN6Xzs.mp4" type="video/mp4"> <!-- Update with actual video file -->
+        </video>
+    </div>
+    <header>
+        <h1>Myst Unisex Salon | Nails | Aesthetics</h1>
+        <p>Timings: Mon-Sun | 11am-9pm</p>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="https://www.instagram.com/myst.india/" target="_blank">Instagram</a></li> <!-- Update with actual Instagram link -->
+        </ul>
+    </nav>
+    <section id="home" class="parallax" style="background-image: url('exterior.jpeg');">
+        <h2>Welcome to Myst Salon</h2>
+        <p>Experience luxury salon and aesthetics services in Hyderabad.</p>
+    </section>
+    <section id="services" class="parallax" style="background-image: url('Snapinst.app_460568781_18020693294428150_8137515123356536593_n_1080.jpg');">
+        <h2>Our Services</h2>
+        <ul>
+            <li>Medi Facials</li>
+            <li>Skin Analysis</li>
+            <li>Hair Analysis</li>
+            <li>Korean Headspa</li>
+            <li>IV Infusion</li>
+            <li>Chemical Peels</li>
+            <li>Body Spa</li>
+            <li>Laser Hair Reduction</li>
+            <li>Hair and Skin Mesotherapy</li>
+            <li>Hydra Facial</li>
+            <li>DPN Removal</li>
+            <li>GFC</li>
+        </ul>
+    </section>
+    <section id="contact" class="parallax" style="background-image: url('contactus.png');">
+        <h2>Book an Appointment</h2>
+        <p>For Salon Appointment: <strong>9100390456</strong></p>
+        <p>For Aesthetics Appointment: <strong>9014618181</strong></p>
+        <p>Visit Us: 02-054/6, behind Pullareddy Sweets, Satyam Enclave, Kompally, Hyderabad, Telangana 500100</p>
+        <h3>Contact Us</h3>
+        <form onsubmit="submitForm(event)">
+            <label for="firstname">First Name:</label>
+            <input type="text" id="firstname" name="firstname" required>
+            
+            <label for="lastname">Last Name:</label>
+            <input type="text" id="lastname" name="lastname" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="phonenumber">Phone Number:</label>
+            <input type="tel" id="phonenumber" name="phonenumber" required>
+            
+            <label for="intrested">Interested In:</label>
+            <input type="text" id="intrested" name="intrested" required>
+            
+            <button type="submit">Book Now</button>
+        </form>
+    </section>
+    <footer>
+        <p>&copy; 2025 Myst Unisex Salon. All rights reserved.</p>
+    </footer>
+</body>
+</html>
