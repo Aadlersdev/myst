@@ -350,7 +350,7 @@ function submitForm(event) {
     .then(data => {
         alert("Form submitted successfully!");
         setCookie("formSubmitted", "true", 7); // Mark form as submitted
-        document.getElementById("popup").style.display = "none";
+       
     })
     .catch(error => console.error('Error:', error));
 }
