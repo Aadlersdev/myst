@@ -327,7 +327,8 @@ function submitForm(event) {
 }
 
 function submitContactForm(event) {
-   
+       event.preventDefault();
+
 
     let firstVisitTimestamp = getCookie("firstVisitTimestamp");
 
