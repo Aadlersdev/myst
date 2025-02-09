@@ -13,53 +13,91 @@
                 setTimeout(() => { preloader.style.display = "none"; }, 500);
             }, 3000);
         });
+
+        function setCookie(name, value, days) {
+            let expires = "";
+            if (days) {
+                let date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + value + expires + "; path=/";
+        }
+
+        function getCookie(name) {
+            let nameEQ = name + "=";
+            let ca = document.cookie.split(';');
+            for(let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        function submitForm(event) {
+            event.preventDefault();
+            let firstname = document.getElementById("firstname").value;
+            let lastname = document.getElementById("lastname").value;
+            let email = document.getElementById("email").value;
+            let phonenumber = document.getElementById("phonenumber").value;
+            let intrested = document.getElementById("intrested").value;
+            let websitevisted = window.location.href;
+            
+            setCookie("userFirstName", firstname, 7);
+            setCookie("userEmail", email, 7);
+            
+            let formData = {
+                email: email,
+                phonenumber: phonenumber,
+                firstname: firstname,
+                lastname: lastname,
+                intrested: intrested,
+                websitevisted: websitevisted
+            };
+            
+            fetch("https://myst.karankhosla99.workers.dev/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert("Thank you for booking, " + firstname + "! We will contact you soon.");
+                document.querySelector("form").reset();
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("There was an error submitting your booking. Please try again.");
+            });
+        }
     </script>
 </head>
-<body>
+<body style="background-color: #f5f5f5; color: #333; font-family: Arial, sans-serif;">
     <div id="preloader" style="position:fixed; top:0; left:0; width:100%; height:100%; background:black; display:flex; justify-content:center; align-items:center; z-index:1000;">
         <video autoplay muted playsinline style="width:100%; height:auto; max-width:800px;">
-            <source src="Snapinst.app_video_AQPLNSaCrq-8zy7fG0pr_Ftp3cxFC8ImnXyO_0V29szi4RRYANfkxyGjxb9IAM-pFfen4dGQ3bvEnJLxYO3MQ78dUIw3WLZ9wyN6Xzs.mp4" type="video/mp4"> <!-- Update with actual video file -->
+            <source src="intro.mp4" type="video/mp4"> <!-- Update with actual video file -->
         </video>
     </div>
-    <header>
+    <header style="background-color: #222; color: white; padding: 20px; text-align: center;">
         <h1>Myst Unisex Salon | Nails | Aesthetics</h1>
         <p>Timings: Mon-Sun | 11am-9pm</p>
     </header>
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="https://www.instagram.com/myst.india/" target="_blank">Instagram</a></li> <!-- Update with actual Instagram link -->
+    <nav style="background-color: #444; padding: 10px; text-align: center;">
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex; justify-content: center;">
+            <li style="margin: 0 15px;"><a href="#home" style="color: white; text-decoration: none;">Home</a></li>
+            <li style="margin: 0 15px;"><a href="#services" style="color: white; text-decoration: none;">Services</a></li>
+            <li style="margin: 0 15px;"><a href="#gallery" style="color: white; text-decoration: none;">Gallery</a></li>
+            <li style="margin: 0 15px;"><a href="#contact" style="color: white; text-decoration: none;">Contact</a></li>
+            <li style="margin: 0 15px;"><a href="https://www.instagram.com/myst.india/" target="_blank" style="color: white; text-decoration: none;">Instagram</a></li>
         </ul>
     </nav>
-    <section id="home" class="parallax" style="background-image: url('exterior.jpeg');">
-        <h2>Welcome to Myst Salon</h2>
-        <p>Experience luxury salon and aesthetics services in Hyderabad.</p>
-    </section>
-    <section id="services" class="parallax" style="background-image: url('Snapinst.app_460568781_18020693294428150_8137515123356536593_n_1080.jpg');">
-        <h2>Our Services</h2>
-        <ul>
-            <li>Medi Facials</li>
-            <li>Skin Analysis</li>
-            <li>Hair Analysis</li>
-            <li>Korean Headspa</li>
-            <li>IV Infusion</li>
-            <li>Chemical Peels</li>
-            <li>Body Spa</li>
-            <li>Laser Hair Reduction</li>
-            <li>Hair and Skin Mesotherapy</li>
-            <li>Hydra Facial</li>
-            <li>DPN Removal</li>
-            <li>GFC</li>
-        </ul>
-    </section>
-    <section id="contact" class="parallax" style="background-image: url('contactus.png');">
+    <section id="contact" style="padding: 50px; text-align: center; background-color: #d4d4d4;">
         <h2>Book an Appointment</h2>
         <p>For Salon Appointment: <strong>9100390456</strong></p>
         <p>For Aesthetics Appointment: <strong>9014618181</strong></p>
-        <p>Visit Us: 02-054/6, behind Pullareddy Sweets, Satyam Enclave, Kompally, Hyderabad, Telangana 500100</p>
         <h3>Contact Us</h3>
         <form onsubmit="submitForm(event)">
             <label for="firstname">First Name:</label>
@@ -80,7 +118,7 @@
             <button type="submit">Book Now</button>
         </form>
     </section>
-    <footer>
+    <footer style="background-color: #222; color: white; text-align: center; padding: 10px;">
         <p>&copy; 2025 Myst Unisex Salon. All rights reserved.</p>
     </footer>
 </body>
