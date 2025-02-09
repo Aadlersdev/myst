@@ -326,7 +326,7 @@ function submitForm(event) {
     .catch(error => console.error('Error:', error));
 }
 
-        function submitContactForm(event) {
+function submitContactForm(event) {
    
 
     let firstVisitTimestamp = getCookie("firstVisitTimestamp");
@@ -448,7 +448,7 @@ function submitForm(event) {
     </section>
     <section id="contact">
         <h2>Contact Us</h2>
-        <form onsubmit="submitContactForm">
+        <form onsubmit="submitContactForm(event)">
             <label for="contact-firstname">First Name:</label>
             <input type="text" id="contact-firstname" required>
             
