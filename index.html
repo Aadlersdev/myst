@@ -28,8 +28,7 @@
             let nameEQ = name + "=";
             let ca = document.cookie.split(';');
             for(let i = 0; i < ca.length; i++) {
-                let c = ca[i];
-                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                let c = ca[i].trim();
                 if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
             }
             return null;
@@ -74,31 +73,127 @@
             });
         }
     </script>
+    <style>
+        body {
+            background-color: #f3e5d8;
+            color: #5c4033;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #5c4033;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        header {
+            background-color: #8d6e63;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #a1887f;
+            padding: 10px;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        section {
+            padding: 50px;
+            text-align: center;
+            background-color: #d7ccc8;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 400px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        form input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #5c4033;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #8d6e63;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+        }
+        button:hover {
+            background-color: #5c4033;
+        }
+        footer {
+            background-color: #5c4033;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        @media (max-width: 600px) {
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+            form {
+                width: 90%;
+            }
+        }
+    </style>
 </head>
-<body style="background-color: #f5f5f5; color: #333; font-family: Arial, sans-serif;">
-    <div id="preloader" style="position:fixed; top:0; left:0; width:100%; height:100%; background:black; display:flex; justify-content:center; align-items:center; z-index:1000;">
+<body>
+    <div id="preloader">
         <video autoplay muted playsinline style="width:100%; height:auto; max-width:800px;">
-            <source src="intro.mp4" type="video/mp4"> <!-- Update with actual video file -->
+            <source src="Snapinst.app_video_AQPLNSaCrq-8zy7fG0pr_Ftp3cxFC8ImnXyO_0V29szi4RRYANfkxyGjxb9IAM-pFfen4dGQ3bvEnJLxYO3MQ78dUIw3WLZ9wyN6Xzs.mp4.mp4" type="video/mp4"> 
         </video>
     </div>
-    <header style="background-color: #222; color: white; padding: 20px; text-align: center;">
+
+    <header>
         <h1>Myst Unisex Salon | Nails | Aesthetics</h1>
         <p>Timings: Mon-Sun | 11am-9pm</p>
     </header>
-    <nav style="background-color: #444; padding: 10px; text-align: center;">
-        <ul style="list-style: none; padding: 0; margin: 0; display: flex; justify-content: center;">
-            <li style="margin: 0 15px;"><a href="#home" style="color: white; text-decoration: none;">Home</a></li>
-            <li style="margin: 0 15px;"><a href="#services" style="color: white; text-decoration: none;">Services</a></li>
-            <li style="margin: 0 15px;"><a href="#gallery" style="color: white; text-decoration: none;">Gallery</a></li>
-            <li style="margin: 0 15px;"><a href="#contact" style="color: white; text-decoration: none;">Contact</a></li>
-            <li style="margin: 0 15px;"><a href="https://www.instagram.com/myst.india/" target="_blank" style="color: white; text-decoration: none;">Instagram</a></li>
+
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="https://www.instagram.com/myst.india/" target="_blank">Instagram</a></li>
         </ul>
     </nav>
-    <section id="contact" style="padding: 50px; text-align: center; background-color: #d4d4d4;">
+
+    <section id="contact">
         <h2>Book an Appointment</h2>
-        <p>For Salon Appointment: <strong>9100390456</strong></p>
-        <p>For Aesthetics Appointment: <strong>9014618181</strong></p>
-        <h3>Contact Us</h3>
         <form onsubmit="submitForm(event)">
             <label for="firstname">First Name:</label>
             <input type="text" id="firstname" name="firstname" required>
@@ -118,7 +213,8 @@
             <button type="submit">Book Now</button>
         </form>
     </section>
-    <footer style="background-color: #222; color: white; text-align: center; padding: 10px;">
+
+    <footer>
         <p>&copy; 2025 Myst Unisex Salon. All rights reserved.</p>
     </footer>
 </body>
